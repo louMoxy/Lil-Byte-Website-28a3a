@@ -51,7 +51,10 @@ export default function Layout({ children }) {
 
   return (
     <div className="relative pb-24 overflow-hidden">
-      <div className="flex flex-col items-center w-full max-w-2xl mx-auto">
+      {/* Animated background pattern */}
+      <div className="animated-bg"></div>
+      
+      <div className="flex flex-col items-center w-full mx-auto">
         {children}
       </div>
     </div>
