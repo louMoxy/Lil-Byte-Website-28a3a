@@ -3,19 +3,19 @@ import { getPosts } from '../../utils/mdx-utils';
 import { getGlobalData } from '../../utils/global-data';
 
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import Layout, { GradientBackground } from '../../components/Layout';
+import Layout from '../../components/Layout';
 import ArrowIcon from '../../components/ArrowIcon';
 import SEO from '../../components/SEO';
+import RetroWindowCard from '../../components/RetroWindowCard';
 
 export default function PostsIndex({ posts, globalData }) {
+  console.log(posts);
   return (
     <Layout>
       <SEO 
         title="Blog - Lil Byte Games" 
         description="Devlogs, ideas, and lessons learned from my indie game development journey. Follow along as I build games and share what I'm learning." 
       />
-      <Header name="Lil Byte Games" />
       
       {/* Hero Section */}
       <section className="w-full text-center py-16">
@@ -36,54 +36,15 @@ export default function PostsIndex({ posts, globalData }) {
       <section className="w-full py-12">
         <div className="max-w-6xl mx-auto px-6">
           {posts.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
               {posts.map((post, index) => (
-                <article
-                  key={post.filePath}
-                  className="bg-white/10 dark:bg-black/30 backdrop-blur rounded-lg overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 hover:scale-110 hover:rotate-1 hover:shadow-2xl hover:shadow-primary/20 group cursor-pointer transform-gpu animate-[fadeInUp_0.6s_ease-out_forwards] opacity-0"
-                  style={{ 
-                    animationDelay: `${index * 0.1}s`,
-                  }}
-                >
-                  <div className="p-8">
-                    {/* Date */}
-                    {post.data.date && (
-                      <div className="flex items-center gap-2 mb-4">
-                        <span className="w-2 h-2 bg-primary rounded-full group-hover:scale-150 group-hover:animate-pulse transition-all duration-300"></span>
-                        <time className="text-sm font-medium opacity-70 uppercase tracking-wide group-hover:opacity-100 group-hover:text-primary transition-all duration-300">
-                          {new Date(post.data.date).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })}
-                        </time>
-                      </div>
-                    )}
-                    
-                    {/* Title */}
-                    <h2 className="text-2xl font-bold mb-4 leading-tight group-hover:text-primary-dark group-hover:scale-105 transition-all duration-300 transform origin-left">
-                      {post.data.title}
-                    </h2>
-                    
-                    {/* Description */}
-                    {post.data.description && (
-                      <p className="text-lg opacity-70 mb-6 leading-relaxed line-clamp-3 group-hover:opacity-90 transition-opacity duration-300">
-                        {post.data.description}
-                      </p>
-                    )}
-                    
-                    {/* Read More Link */}
-                    <Link
-                      as={`/posts/${post.filePath.replace(/\.mdx?$/, '')}`}
-                      href={`/posts/[slug]`}
-                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-all duration-300 group/link relative px-4 py-2 pr-6 rounded-lg"
-                    >
-                      <span className="relative z-10 group-hover/link:animate-bounce">Read More</span>
-                      <ArrowIcon className="w-4 h-4 group-hover/link:translate-x-2 group-hover/link:scale-125 transition-all duration-300 relative z-10" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-gradient-2/20 scale-x-0 group-hover/link:scale-x-100 transition-transform duration-300 origin-left rounded -mr-2"></div>
-                    </Link>
+                <RetroWindowCard key={post.slug} title={post.data.date} href={`/posts/${post.slug}`}>
+                  <p className="opacity-80">{post.data.description}</p>
+                  <div className="mt-4 flex items-center gap-3">
+                    <span className="text-xs opacity-70">{post.data.title}</span>
+                    <ArrowIcon className="w-4 h-4" />
                   </div>
-                </article>
+              </RetroWindowCard>
               ))}
             </div>
           ) : (
@@ -163,32 +124,24 @@ export default function PostsIndex({ posts, globalData }) {
         </div>
       </section>
 
-      <Footer copyrightText="© 2024 Lil Byte Games. All rights reserved." />
-      <GradientBackground
-        variant="large"
-        className="fixed top-20 opacity-40 dark:opacity-60"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20 dark:opacity-10"
-      />
+      <Footer copyrightText="© 2025 Lil Byte Games. All rights reserved." />
     </Layout>
   );
 }
 
 export function getStaticProps() {
-  const posts = getPosts();
+  const rawPosts = getPosts();
+  const postsWithSlugs = rawPosts.map((p) => ({
+    ...p,
+    slug: p.filePath.replace(/\.mdx?$/, ''),
+  }));
+  const sortedPosts = postsWithSlugs.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
   const globalData = getGlobalData();
 
-  // Sort posts by date (newest first)
-  const sortedPosts = posts.sort((a, b) => {
-    return new Date(b.data.date) - new Date(a.data.date);
-  });
-
-  return { 
-    props: { 
-      posts: sortedPosts, 
-      globalData 
-    } 
+  return {
+    props: {
+      posts: sortedPosts,
+      globalData,
+    },
   };
 }

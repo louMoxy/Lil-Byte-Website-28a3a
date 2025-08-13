@@ -8,6 +8,7 @@ import rehypeUnwrapImages from 'rehype-unwrap-images';
 
 // POSTS_PATH is useful when you want to get the path to a specific file
 export const POSTS_PATH = path.join(process.cwd(), 'posts');
+export const GAMES_PATH = path.join(process.cwd(), 'games');
 
 // getPostFilePaths is the list of all mdx files inside the POSTS_PATH directory
 export const getPostFilePaths = () => {
@@ -17,6 +18,19 @@ export const getPostFilePaths = () => {
       // Only include md(x) files
       .filter((path) => /\.mdx?$/.test(path))
   );
+};
+
+export const getGameFilePaths = () => {
+  if (!fs.existsSync(GAMES_PATH)) return [];
+  return fs.readdirSync(GAMES_PATH).filter((p) => /\.mdx?$/.test(p));
+};
+
+export const sortGamesByDate = (games) => {
+  return games.sort((a, b) => {
+    const aDate = a.data?.date ? new Date(a.data.date) : new Date('1970-01-01');
+    const bDate = b.data?.date ? new Date(b.data.date) : new Date('1970-01-01');
+    return bDate - aDate;
+  });
 };
 
 export const sortPostsByDate = (posts) => {
@@ -42,6 +56,31 @@ export const getPosts = () => {
   posts = sortPostsByDate(posts);
 
   return posts;
+};
+
+export const getGames = () => {
+  const files = getGameFilePaths();
+  let items = files.map((filePath) => {
+    const source = fs.readFileSync(path.join(GAMES_PATH, filePath));
+    const { content, data } = matter(source);
+    return { content, data, filePath };
+  });
+  items = sortGamesByDate(items);
+  return items;
+};
+
+export const getGameBySlug = async (slug) => {
+  const gameFilePath = path.join(GAMES_PATH, `${slug}.mdx`);
+  const source = fs.readFileSync(gameFilePath);
+  const { content, data } = matter(source);
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypePrism, rehypeUnwrapImages],
+    },
+    scope: data,
+  });
+  return { mdxSource, data, gameFilePath };
 };
 
 export const getPostBySlug = async (slug) => {

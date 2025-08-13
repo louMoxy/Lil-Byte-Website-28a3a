@@ -1,18 +1,5 @@
-import classNames from 'classnames';
 import { useEffect } from 'react';
-import styles from './Layout.module.css';
-
-export function GradientBackground({ variant, className }) {
-  const classes = classNames(
-    {
-      [styles.colorBackground]: variant === 'large',
-      [styles.colorBackgroundBottom]: variant === 'small',
-    },
-    className
-  );
-
-  return <div className={classes} />;
-}
+import Header from './Header';
 
 export default function Layout({ children }) {
   const setAppTheme = () => {
@@ -50,12 +37,25 @@ export default function Layout({ children }) {
   }, []);
 
   return (
-    <div className="relative pb-24 overflow-hidden">
-      {/* Animated background pattern */}
-      <div className="animated-bg"></div>
-      
-      <div className="flex flex-col items-center w-full mx-auto">
-        {children}
+    <div className="relative min-h-screen py-6">
+      <div className="container-soft">
+        <div className="retro-window" style={{ ['--retro-title']: '#FFC1DF', ['--retro-body']: '#FFF7EB' }}>
+          <div className="retro-titlebar">
+            <div className="flex items-center gap-2">
+              <span className="retro-dot" />
+              <span className="retro-dot" />
+              <span className="retro-dot" />
+            </div>
+            <span className="retro-title text-sm font-bold">Lil Byte Window</span>
+            <div className="w-full"><Header /></div>
+          </div>
+          <div className="retro-body">
+            {children}
+            <div className="mt-10 text-center opacity-70 text-xs">
+              <span>© 2024 Lil Byte Games</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -31,7 +31,12 @@
   /* Light theme body styling */
   body {
     font-family: var(--font-secondary);
-    background-color: var(--color-background);
+    /* Light green background with subtle white grid */
+    background-color: #CFEAD6;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 36px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.55) 0px, rgba(255,255,255,0.55) 1px, transparent 1px, transparent 36px);
+    background-attachment: fixed;
     color: var(--color-text-primary);
   }
 
@@ -141,4 +146,114 @@
   .sparkling {
     animation: sparkle 2s ease-in-out infinite;
   }
+}
+
+@layer components {
+  .container-soft { @apply mx-auto max-w-7xl px-6; }
+  .section-soft { @apply py-20 md:py-28; }
+
+  /* Retro 90s dotted background */
+  .pastel-grid {
+    position: relative;
+    background-color: #FFF7EB; /* cream base */
+    background-image:
+      radial-gradient(rgba(187, 143, 206, 0.35) 1px, transparent 2px), /* lavender dots */
+      radial-gradient(rgba(135, 206, 235, 0.28) 1px, transparent 2px); /* sky blue dots */
+    background-size: 12px 12px, 12px 12px;
+    background-position: 0 0, 6px 6px; /* offset for a denser halftone look */
+  }
+
+  /* Doodle-style outlined card */
+  .doodle-card {
+    background-color: rgba(255,255,255,0.85);
+    border: 2px solid var(--color-text-primary);
+    border-radius: 18px;
+    box-shadow: 0 2px 0 var(--color-text-primary);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Doodle-style buttons */
+  .btn-doodle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    border: 2px solid var(--color-text-primary);
+    box-shadow: 0 3px 0 var(--color-text-primary), 0 6px 12px rgba(0,0,0,0.08);
+    transition: transform 150ms ease, filter 150ms ease;
+  }
+  .btn-doodle:hover { transform: translateY(-2px); }
+  .btn-doodle:active { transform: translateY(0); box-shadow: 0 2px 0 var(--color-text-primary), 0 3px 8px rgba(0,0,0,0.06); }
+  .btn-doodle-primary { background-color: var(--color-primary); color: white; }
+  .btn-doodle-secondary { background-color: var(--color-accent-2); color: var(--color-text-primary); }
+  .btn-doodle-surface { background-color: var(--color-surface); color: var(--color-text-primary); }
+
+  .doodle-icon { filter: drop-shadow(0 1px 0 var(--color-text-primary)); }
+
+  /* Retro window card (pink titlebar, cream body) */
+  .retro-window {
+    border: 2px solid var(--color-text-primary);
+    border-radius: 14px;
+    background: var(--retro-body, #FFF7EB); /* cream by default */
+    box-shadow: 0 2px 0 var(--color-text-primary);
+    overflow: hidden;
+  }
+  .retro-titlebar {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--retro-title, #FFC1DF); /* soft pink by default */
+    border-bottom: 2px solid var(--color-text-primary);
+  }
+  .retro-dot {
+    width: 10px; height: 10px; border: 2px solid var(--color-text-primary); border-radius: 9999px; background: #FFE6F1;
+    box-shadow: 0 1px 0 var(--color-text-primary);
+    display: inline-block;
+  }
+  .retro-square { width: 10px; height: 10px; border: 2px solid var(--color-text-primary); background: #FFE6F1; display: inline-block; box-shadow: 0 1px 0 var(--color-text-primary); }
+  .retro-title { color: var(--color-text-primary); }
+  .retro-body { padding: 1rem; color: var(--color-text-primary); }
+
+  /* Rounded pill navigation */
+  .nav-pill {
+    @apply inline-flex items-center;
+    background: #FFF7EB;
+    border: 2px solid var(--color-text-primary);
+    border-radius: 9999px;
+    box-shadow: 0 4px 0 var(--color-text-primary), 0 10px 18px rgba(0,0,0,0.08);
+    padding: 0.5rem 0.75rem;
+    gap: 0.25rem;
+  }
+  .nav-gradient {
+    background-image: linear-gradient(180deg, #DDF5E5 0%, #F7F2C6 100%);
+  }
+  .pill-link {
+    @apply font-bold uppercase tracking-wide; 
+    color: var(--color-text-primary);
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    transition: transform 150ms ease, background-color 150ms ease;
+  }
+  .pill-link:hover { background: #FFE6F1; transform: translateY(-1px); }
+  .pill-divider { width: 1px; height: 18px; background: rgba(0,0,0,0.35); }
+
+  /* 90s sticker-style card (not a window) */
+  .sticker-card {
+    position: relative;
+    border: 3px solid var(--color-text-primary);
+    border-radius: 22px;
+    background: linear-gradient(180deg, #FFE6F4 0%, #E6F6FF 100%);
+    box-shadow: 0 6px 0 var(--color-text-primary), 0 16px 30px rgba(0,0,0,0.12);
+    padding: 1.25rem;
+    overflow: hidden;
+  }
+  .sticker-tab { position: absolute; top: -8px; height: 12px; width: 34px; border: 2px solid var(--color-text-primary); border-radius: 6px; box-shadow: 0 2px 0 var(--color-text-primary); }
+  .sticker-tab.pink { background: #FFC1DF; left: 18px; }
+  .sticker-tab.mint { background: #DDF5E5; left: 60px; }
+  .sticker-tab.blue { background: #C8E7FF; right: 24px; }
 }

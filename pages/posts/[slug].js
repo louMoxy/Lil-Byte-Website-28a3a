@@ -13,8 +13,7 @@ import ArrowIcon from '../../components/ArrowIcon';
 import CustomImage from '../../components/CustomImage';
 import CustomLink from '../../components/CustomLink';
 import Footer from '../../components/Footer';
-import Header from '../../components/Header';
-import Layout, { GradientBackground } from '../../components/Layout';
+import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
 
 // Custom components/renderers to pass to MDX.
@@ -44,8 +43,7 @@ export default function PostPage({
         title={`${frontMatter.title} - ${globalData.name}`}
         description={frontMatter.description}
       />
-      <Header name={globalData.name} />
-      <article className="px-6 md:px-0" data-sb-object-id={`posts/${slug}.mdx`}>
+      <article className="px-10 py-8" data-sb-object-id={`posts/${slug}.mdx`}>
         <header>
           <h1
             className="mb-12 text-3xl text-center md:text-5xl dark:text-white"
@@ -54,7 +52,7 @@ export default function PostPage({
             {frontMatter.title}
           </h1>
           {frontMatter.description && (
-            <p className="mb-4 text-xl" data-sb-field-path="description">
+            <p className="mb-8 text-xl" data-sb-field-path="description">
               {frontMatter.description}
             </p>
           )}
@@ -99,14 +97,6 @@ export default function PostPage({
         </div>
       </article>
       <Footer copyrightText={globalData.footerText} />
-      <GradientBackground
-        variant="large"
-        className="absolute -top-32 opacity-30 dark:opacity-50"
-      />
-      <GradientBackground
-        variant="small"
-        className="absolute bottom-0 opacity-20 dark:opacity-10"
-      />
     </Layout>
   );
 }

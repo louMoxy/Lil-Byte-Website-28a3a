@@ -1,79 +1,49 @@
 import Link from 'next/link';
-import { BugIcon, GameIcon, BlogIcon, ContactIcon } from './CuteIcons';
+import { useState } from 'react';
+import { BugIcon } from './CuteIcons';
 
-export default function Header({ name }) {
+export default function Header({ name = 'Lil Byte Games' }) {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="w-full pt-8 pb-8 bg-white/5 dark:bg-black/10 backdrop-blur border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between">
-          {/* Logo/Brand */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-gradient-3 to-gradient-4 flex items-center justify-center group-hover:scale-105 transition-transform duration-200 text-white">
-              <BugIcon className="w-5 h-5" animated />
-            </div>
-            <span className="text-xl font-bold">{name}</span>
-          </Link>
-
-          {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link 
-              href="#games" 
-              className="text-lg font-medium hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
-            >
-              <GameIcon className="w-5 h-5 text-primary group-hover:text-primary-dark transition-colors duration-200" />
-              Games
-            </Link>
-            <Link 
-              href="/posts" 
-              className="text-lg font-medium hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
-            >
-              <BlogIcon className="w-5 h-5 text-secondary group-hover:text-primary transition-colors duration-200" />
-              Blog
-            </Link>
-            <Link 
-              href="#contact" 
-              className="text-lg font-medium hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
-            >
-              <ContactIcon className="w-5 h-5 text-accent-1 group-hover:text-primary transition-colors duration-200" />
-              Contact
-            </Link>
-          </nav>
-
-          {/* Mobile Menu Button */}
-          <button className="md:hidden p-2 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur border border-white/20">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        <nav className="md:hidden mt-4 pt-4 border-t border-white/10">
-          <div className="flex flex-col gap-4">
-            <Link 
-              href="#games" 
-              className="text-lg font-medium hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
-            >
-              <GameIcon className="w-5 h-5 text-primary group-hover:text-primary-dark transition-colors duration-200" />
-              Games
-            </Link>
-            <Link 
-              href="/posts" 
-              className="text-lg font-medium hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
-            >
-              <BlogIcon className="w-5 h-5 text-secondary group-hover:text-primary transition-colors duration-200" />
-              Blog
-            </Link>
-            <Link 
-              href="#contact" 
-              className="text-lg font-medium hover:text-primary transition-colors duration-200 flex items-center gap-2 group"
-            >
-              <ContactIcon className="w-5 h-5 text-accent-1 group-hover:text-primary transition-colors duration-200" />
-              Contact
-            </Link>
+    <div className="w-full">
+      <div className="flex items-center justify-between gap-3">
+        <nav className="hidden md:flex">
+          <div className="nav-pill nav-gradient">
+            <Link href="/" className="pill-link">Home</Link>
+            <div className="pill-divider" />
+            <Link href="/#games" className="pill-link">Games</Link>
+            <div className="pill-divider" />
+            <Link href="/posts" className="pill-link">Blog</Link>
+            <div className="pill-divider" />
+            <Link href="/#contact" className="pill-link">Contact</Link>
           </div>
         </nav>
+        <button aria-label="Toggle menu" className="md:hidden nav-pill nav-gradient" onClick={() => setOpen((v) => !v)}>
+          <span className="pill-link">Menu</span>
+        </button>
       </div>
-    </header>
+      {open && (
+        <div className="fixed inset-0 z-50 pastel-grid bg-white/90 backdrop-blur-sm">
+          <div className="absolute top-4 right-4">
+            <button aria-label="Close menu" className="nav-pill nav-gradient" onClick={() => setOpen(false)}>
+              <span className="pill-link">Close</span>
+            </button>
+          </div>
+          <div className="w-full h-full flex items-center justify-center p-6">
+            <nav className="flex flex-col items-center gap-4">
+              <Link href="/#games" className="nav-pill nav-gradient w-64 justify-center" onClick={() => setOpen(false)}>
+                <span className="pill-link">Games</span>
+              </Link>
+              <Link href="/posts" className="nav-pill nav-gradient w-64 justify-center" onClick={() => setOpen(false)}>
+                <span className="pill-link">Blog</span>
+              </Link>
+              <Link href="/#contact" className="nav-pill nav-gradient w-64 justify-center" onClick={() => setOpen(false)}>
+                <span className="pill-link">Contact</span>
+              </Link>
+            </nav>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
