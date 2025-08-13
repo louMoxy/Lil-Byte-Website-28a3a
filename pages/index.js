@@ -167,6 +167,7 @@ export default function Index({ posts, globalData, latestGames, latestPosts }) {
               name="contact" 
               method="POST" 
               data-netlify="true" 
+              action="/__forms.html"
               className="space-y-6"
               netlify-honeypot="bot-field"
             >
