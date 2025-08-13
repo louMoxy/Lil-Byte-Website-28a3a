@@ -3,11 +3,9 @@ import Layout from '../../components/Layout';
 import SEO from '../../components/SEO';
 import Doodles from '../../components/Doodles';
 import RetroWindowCard from '../../components/RetroWindowCard';
-import { GameIcon, StarIcon, HeartIcon } from '../../components/CuteIcons';
-import fs from 'fs';
-import path from 'path';
+import { GameIcon } from '../../components/CuteIcons';
 import Image from 'next/image';
-import { getGames, GAMES_PATH } from '../../utils/mdx-utils';
+import { getGames } from '../../utils/mdx-utils';
 
 export default function GamesPage({ games }) {
   return (

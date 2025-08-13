@@ -1,13 +1,15 @@
-export default function Doodles({ color = 'var(--color-text-primary)', opacity = 0.35 }) {
+export default function Doodles({ color = '#FFC1DF', opacity = 1, scale = 3 }) {
   const common = {
     position: 'absolute',
     color,
     opacity,
-    filter: 'drop-shadow(0 1px 0 rgba(0,0,0,0.25))',
+    filter: 'drop-shadow(0 2px 2px rgba(0,0,0,0.18))',
+    transformOrigin: 'center',
+    transform: `scale(${scale})`,
   };
-
+  const randomDelay = Math.floor(Math.random() * 4);
   return (
-    <div className="pointer-events-none absolute inset-0 -z-0">
+    <div className={`pointer-events-none absolute inset-0 -z-0 wobble-slow-${randomDelay}`}>
       {/* Diamond */}
       <svg viewBox="0 0 10 10" width="14" height="14" style={{ ...common, top: '10%', left: '8%' }}>
         <path d="M5 0 L10 5 L5 10 L0 5 Z" fill="currentColor" />
@@ -19,7 +21,7 @@ export default function Doodles({ color = 'var(--color-text-primary)', opacity =
       </svg>
 
       {/* Arc */}
-      <svg viewBox="0 0 20 10" width="28" height="14" style={{ ...common, bottom: '12%', left: '12%' }}>
+      <svg viewBox="-2 0 24 6" width="28" height="14" style={{ ...common, bottom: '12%', left: '12%' }}>
         <path d="M0 10 A10 10 0 0 1 20 10" stroke="currentColor" strokeWidth="2" fill="none" />
       </svg>
 

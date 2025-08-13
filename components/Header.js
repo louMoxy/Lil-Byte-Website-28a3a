@@ -11,7 +11,7 @@ export default function Header({ name = 'Lil Byte Games' }) {
           <div className="nav-pill nav-gradient">
             <Link href="/" className="pill-link">Home</Link>
             <div className="pill-divider" />
-            <Link href="/#games" className="pill-link">Games</Link>
+            <Link href="/games" className="pill-link">Games</Link>
             <div className="pill-divider" />
             <Link href="/posts" className="pill-link">Blog</Link>
             <div className="pill-divider" />

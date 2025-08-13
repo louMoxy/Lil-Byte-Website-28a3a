@@ -27,7 +27,7 @@ export default function PostsIndex({ posts, globalData }) {
             Devlogs, ideas, and lessons learned from my indie game development journey
           </p>
           <p className="text-lg opacity-70">
-            Follow along as I build games, share what I'm learning, and document the ups and downs of learning game development in public.
+            Follow along as I build games, share what I&#39;m learning, and document the ups and downs of learning game development in public.
           </p>
         </div>
       </section>
@@ -55,7 +55,7 @@ export default function PostsIndex({ posts, globalData }) {
               </div>
               <h2 className="text-3xl font-bold mb-4">No Posts Yet</h2>
               <p className="text-xl opacity-70 mb-8">
-                I'm working on some amazing content! Check back soon for dev logs, tutorials, and insights from my game development journey.
+                I&#39;m working on some amazing content! Check back soon for dev logs, tutorials, and insights from my game development journey.
               </p>
               <Link
                 href="/"
@@ -72,7 +72,7 @@ export default function PostsIndex({ posts, globalData }) {
       {posts.length > 0 && (
         <section className="w-full py-16 border-t border-white/10">
           <div className="max-w-4xl mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-8">What You'll Find Here</h2>
+            <h2 className="text-3xl font-bold mb-8">What You&apos;ll Find Here</h2>
             <div className="grid md:grid-cols-3 gap-8">
               <div className="bg-white/5 dark:bg-black/20 rounded-lg p-6 backdrop-blur border border-white/10">
                 <div className="text-4xl mb-4">🎮</div>
@@ -85,7 +85,7 @@ export default function PostsIndex({ posts, globalData }) {
                 <div className="text-4xl mb-4">🛠️</div>
                 <h3 className="text-xl font-bold mb-2">Tutorials & Tips</h3>
                 <p className="opacity-70">
-                  What I'm learning about Unity, game design, and indie development.
+                  What I&#39;m learning about Unity, game design, and indie development.
                 </p>
               </div>
               <div className="bg-white/5 dark:bg-black/20 rounded-lg p-6 backdrop-blur border border-white/10">
@@ -109,13 +109,13 @@ export default function PostsIndex({ posts, globalData }) {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="#contact"
+              href="/#contact"
               className="bg-primary hover:bg-primary/80 text-white px-8 py-4 rounded-full font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
             >
               ✉️ Get Updates
             </Link>
             <Link
-              href="/#games"
+              href="/games"
               className="bg-white/10 hover:bg-white/20 dark:bg-black/30 dark:hover:bg-black/40 backdrop-blur border border-white/20 px-8 py-4 rounded-full font-semibold transition-colors duration-200 flex items-center justify-center gap-2"
             >
               🎮 Play My Games

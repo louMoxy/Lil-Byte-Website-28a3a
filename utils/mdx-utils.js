@@ -21,8 +21,11 @@ export const getPostFilePaths = () => {
 };
 
 export const getGameFilePaths = () => {
-  if (!fs.existsSync(GAMES_PATH)) return [];
-  return fs.readdirSync(GAMES_PATH).filter((p) => /\.mdx?$/.test(p));
+  try {
+    return fs.readdirSync(GAMES_PATH).filter((p) => /\.mdx?$/.test(p));
+  } catch (e) {
+    return [];
+  }
 };
 
 export const sortGamesByDate = (games) => {

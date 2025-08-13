@@ -15,6 +15,26 @@ export const GameIcon = ({ className = "w-6 h-6", animated = false }) => (
   </svg>
 );
 
+// Bold controller icon (higher contrast for small sizes)
+export const ControllerIcon = ({ className = "w-7 h-7", animated = false }) => (
+  <svg
+    className={`${className} ${animated ? 'floating-icon' : ''}`}
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="currentColor"
+  >
+    <rect x="3" y="9" width="18" height="8" rx="4"/>
+    <rect x="6.2" y="7" width="2.4" height="3" rx="1"/>
+    <rect x="15.4" y="7" width="2.4" height="3" rx="1"/>
+    {/* D-Pad */}
+    <rect x="8" y="11" width="3" height="1.6" rx="0.4" fill="#fff"/>
+    <rect x="9.2" y="9.8" width="1.6" height="3" rx="0.4" fill="#fff"/>
+    {/* AB buttons */}
+    <circle cx="15.8" cy="12" r="1.1" fill="#fff"/>
+    <circle cx="18" cy="13.4" r="1.1" fill="#fff"/>
+  </svg>
+);
+
 export const BlogIcon = ({ className = "w-6 h-6", animated = false }) => (
   <svg 
     className={`${className} ${animated ? 'floating-icon-slow' : ''}`}
@@ -40,8 +60,6 @@ export const ContactIcon = ({ className = "w-6 h-6", animated = false }) => (
   >
     <rect x="3" y="6" width="18" height="12" rx="2" fill="currentColor" opacity="0.8"/>
     <path d="M3 8l9 5 9-5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-    <circle cx="19" cy="5" r="2" fill="currentColor"/>
-    <circle cx="5" cy="19" r="1.5" fill="currentColor"/>
   </svg>
 );
 

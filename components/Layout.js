@@ -46,7 +46,7 @@ export default function Layout({ children }) {
               <span className="retro-dot" />
               <span className="retro-dot" />
             </div>
-            <span className="retro-title text-sm font-bold">Lil Byte Window</span>
+            <span className="retro-title text-sm font-bold">Lil Byte Games</span>
             <div className="w-full"><Header /></div>
           </div>
           <div className="retro-body">

@@ -39,16 +39,16 @@ export default function Index({ posts, globalData, latestGames, latestPosts }) {
               Hi! I’m teaching myself game development from scratch, and this is where I share everything I make — the good, the bad, and the “why is it doing that?” moments.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                 <Link href="#games" className="btn-doodle btn-doodle-primary">
-                  <GameIcon className="w-5 h-5 doodle-icon" />
-                  🎮 Play My Games
+                  <span className="doodle-icon" style={{ color: 'var(--color-text-primary)' }}><svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="9" width="18" height="8" rx="4"/><rect x="6.2" y="7" width="2.4" height="3" rx="1"/><rect x="15.4" y="7" width="2.4" height="3" rx="1"/><rect x="8" y="11" width="3" height="1.6" rx="0.4" fill="#fff"/><rect x="9.2" y="9.8" width="1.6" height="3" rx="0.4" fill="#fff"/><circle cx="15.8" cy="12" r="1.1" fill="#fff"/><circle cx="18" cy="13.4" r="1.1" fill="#fff"/></svg></span>
+                  Play My Games
                 </Link>
                 <Link href="/posts" className="btn-doodle btn-doodle-secondary">
                   <BlogIcon className="w-5 h-5 doodle-icon" />
-                  📖 Read the Blog
+                  Read the Blog
                 </Link>
                 <Link href="#contact" className="btn-doodle btn-doodle-surface">
                   <ContactIcon className="w-5 h-5 doodle-icon" />
-                  ✉️ Say Hi
+                  Say Hi
                 </Link>
               </div>
             </div>
@@ -172,7 +172,7 @@ export default function Index({ posts, globalData, latestGames, latestPosts }) {
             >
               <input type="hidden" name="form-name" value="contact" />
               <p style={{ display: 'none' }}>
-                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+                <label>Don&apos;t fill this out if you&apos;re human: <input name="bot-field" /></label>
               </p>
               
               <div className="grid md:grid-cols-2 gap-6">
